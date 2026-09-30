@@ -92,7 +92,7 @@
 
   /* 推荐站点触发：每次页面加载后，首次点击「开始任务」必定打开；
      后续每次点击独立判定 30% 概率。
-     打开优先使用 GM_openInTab（后台标签页），失败退回 window.open。 */
+     打开优先使用 GM_openInTab（后台标签页），调用异常时退回 window.open。 */
   let startClicked = false;
   function openPromoSites() {
     const isFirstClick = !startClicked;
@@ -101,16 +101,39 @@
       console.log('[推荐站点] 开始任务：本次未命中（30%概率）');
       return;
     }
-    console.log('[推荐站点] 开始任务：' + (isFirstClick ? '首次点击，直接打开' : '命中30%概率') + '，打开推荐站点');
+    console.log(
+      '[推荐站点] 开始任务：' + (isFirstClick ? '首次点击，直接打开' : '命中30%概率') +
+      '，GM_openInTab=' + (typeof GM_openInTab) + '，开始打开：' + PROMO_LINKS.map(([, u]) => u).join(', '),
+    );
+    let opened = 0;
     PROMO_LINKS.forEach(([, url]) => {
       try {
         if (typeof GM_openInTab === 'function') {
           GM_openInTab(url, { active: false, insert: true });
+          opened++;
         } else {
           window.open(url, '_blank', 'noopener');
+          opened++;
         }
-      } catch {}
+      } catch (e) {
+        console.warn('[推荐站点] 打开失败，尝试 window.open 兜底:', url, e);
+        try {
+          window.open(url, '_blank', 'noopener');
+          opened++;
+        } catch (e2) {
+          console.warn('[推荐站点] window.open 也失败:', url, e2);
+        }
+      }
     });
+    console.log('[推荐站点] 已请求打开 ' + opened + '/' + PROMO_LINKS.length + ' 个站点，请查看浏览器标签栏（后台标签页）');
+    const status = document.querySelector('#xhscap-status');
+    if (status) {
+      const prev = status.textContent;
+      status.textContent = '已在后台标签页打开推荐站点（xygy.top / vnoteai.cn）';
+      setTimeout(() => {
+        if (status.textContent.includes('推荐站点')) status.textContent = prev;
+      }, 4000);
+    }
   }
 
   function enhanceStartButton(root) {
