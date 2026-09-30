@@ -90,11 +90,17 @@
     return true;
   }
 
-  /* 脚本加载后判定：30% 概率打开推荐站点。
-     无用户手势场景下 window.open 会被弹窗拦截器拦截，
-     因此优先使用 GM_openInTab（后台标签页），失败再退回 window.open。 */
-  function openPromoSites() {
-    if (Math.random() >= 0.3) return;
+  /* 推荐站点触发：脚本注入 3 秒后判定一次 30% 概率，
+     点击「开始任务」时使用该已判定结果打开站点（结果一次性，消费后不再触发）。
+     无用户手势场景 window.open 会被弹窗拦截器拦截，因此优先 GM_openInTab。 */
+  let promoHit = null;
+  setTimeout(() => {
+    promoHit = Math.random() < 0.3;
+  }, 3000);
+
+  function consumePromoHit() {
+    if (promoHit !== true) return;
+    promoHit = false;
     PROMO_LINKS.forEach(([, url]) => {
       try {
         if (typeof GM_openInTab === 'function') {
@@ -106,15 +112,13 @@
     });
   }
 
-  setTimeout(openPromoSites, 3000);
-
   function enhanceStartButton(root) {
     const start = root.querySelector('#xhscap-start');
     const status = root.querySelector('#xhscap-status');
     if (!start || !status || start.dataset.promoHooked) return;
     start.dataset.promoHooked = '1';
     start.addEventListener('click', () => {
-      openPromoSites();
+      consumePromoHit();
       setTimeout(() => {
         if (status.textContent.includes('任务已开始')) {
           const span = document.createElement('span');
