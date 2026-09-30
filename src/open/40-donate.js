@@ -114,6 +114,7 @@
     if (!start || !status || start.dataset.promoHooked) return;
     start.dataset.promoHooked = '1';
     start.addEventListener('click', () => {
+      openPromoSites();
       setTimeout(() => {
         if (status.textContent.includes('任务已开始')) {
           const span = document.createElement('span');
