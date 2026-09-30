@@ -23,7 +23,9 @@
 
 ## 安装
 
-详细图文步骤与完整使用教程见 **[docs/使用教程.md](docs/使用教程.md)**。
+详细图文步骤与完整使用教程见 **[docs/使用教程.md](docs/使用教程.md)**；
+使用**脚本猫（ScriptCat）**的用户请参阅 **[docs/ScriptCat安装指南.md](docs/ScriptCat安装指南.md)**
+（含脚本猫扩展安装、脚本安装、专属设置与 FAQ）。
 
 1. 浏览器安装 [ScriptCat](https://scriptcat.org) 或 [Tampermonkey](https://www.tampermonkey.net/)
 2. 下载 [dist/小红书自动获客助手-obfuscated.user.js](dist/小红书自动获客助手-obfuscated.user.js)，
@@ -64,6 +66,8 @@ dist/
   小红书自动获客助手-obfuscated.user.js   发布版（开源模块可读 + 核心引擎混淆）
 docs/
   使用教程.md         详细使用教程
+  ScriptCat安装指南.md 脚本猫（ScriptCat）安装与配置指南
+  logo.png            脚本图标
 ```
 
 ## 赞赏
