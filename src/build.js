@@ -2,8 +2,8 @@
  * 构建脚本：把 开源模块 + 闭源核心 组装成用户脚本
  *
  * 产物：
- *   dist/小红书自动获客助手.user.js            完整可读版（作者本地自用，勿分发）
- *   dist/小红书自动获客助手-obfuscated.user.js 发布版（开源模块可读 + 核心模块混淆）
+ *   dist/小红书AI自动获客助手.user.js            完整可读版（作者本地自用，勿分发）
+ *   dist/小红书AI自动获客助手-obfuscated.user.js 发布版（开源模块可读 + 核心模块混淆）
  *
  * 用法：
  *   npm install javascript-obfuscator
@@ -88,19 +88,19 @@ function obfuscateCore(code) {
 fs.mkdirSync(DIST, { recursive: true });
 
 const dev = metadata + '\n\n' + assemble(CORE_BANNER + core);
-fs.writeFileSync(path.join(DIST, '小红书自动获客助手.user.js'), dev, 'utf8');
-console.log('完整可读版 -> dist/小红书自动获客助手.user.js (' + Math.round(dev.length / 1024) + ' KB)');
+fs.writeFileSync(path.join(DIST, '小红书AI自动获客助手.user.js'), dev, 'utf8');
+console.log('完整可读版 -> dist/小红书AI自动获客助手.user.js (' + Math.round(dev.length / 1024) + ' KB)');
 
 const release =
   metadata + '\n\n' +
   OPEN_BANNER + assemble(CORE_BANNER + '\n' + obfuscateCore(core));
-fs.writeFileSync(path.join(DIST, '小红书自动获客助手-obfuscated.user.js'), release, 'utf8');
-console.log('混淆发布版 -> dist/小红书自动获客助手-obfuscated.user.js (' + Math.round(release.length / 1024) + ' KB)');
+fs.writeFileSync(path.join(DIST, '小红书AI自动获客助手-obfuscated.user.js'), release, 'utf8');
+console.log('混淆发布版 -> dist/小红书AI自动获客助手-obfuscated.user.js (' + Math.round(release.length / 1024) + ' KB)');
 
 // 同步一份发布版到公开仓库目录（若存在），供 git 提交推送
 const REPO_DIST = path.join(SRC, '..', '..', 'XHShuokezhushou', 'dist');
 if (fs.existsSync(path.join(REPO_DIST, '..', 'LICENSE'))) {
   fs.mkdirSync(REPO_DIST, { recursive: true });
-  fs.writeFileSync(path.join(REPO_DIST, '小红书自动获客助手-obfuscated.user.js'), release, 'utf8');
-  console.log('已同步到公开仓库 -> XHShuokezhushou/dist/小红书自动获客助手-obfuscated.user.js');
+  fs.writeFileSync(path.join(REPO_DIST, '小红书AI自动获客助手-obfuscated.user.js'), release, 'utf8');
+  console.log('已同步到公开仓库 -> XHShuokezhushou/dist/小红书AI自动获客助手-obfuscated.user.js');
 }

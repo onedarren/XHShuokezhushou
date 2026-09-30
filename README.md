@@ -1,4 +1,4 @@
-# XHShuokezhushou · 小红书自动获客助手
+# XHShuokezhushou · 小红书AI自动获客助手
 
 智能小红书获客助手用户脚本：支持点赞、收藏、评论（表情 / 文本 / AI 回复），
 **关键词搜索**任务模式，支持笔记类型与搜索筛选（排序 / 类型 / 时间 / 范围 / 位置），
@@ -28,9 +28,9 @@
 （含脚本猫扩展安装、脚本安装、专属设置与 FAQ）。
 
 1. 浏览器安装 [ScriptCat](https://scriptcat.org) 或 [Tampermonkey](https://www.tampermonkey.net/)
-2. 下载 [dist/小红书自动获客助手-obfuscated.user.js](dist/小红书自动获客助手-obfuscated.user.js)，
+2. 下载 [dist/小红书AI自动获客助手-obfuscated.user.js](dist/小红书AI自动获客助手-obfuscated.user.js)，
    在脚本管理器中「新建脚本」粘贴全部内容保存，或直接拖入安装
-3. 打开 [www.xiaohongshu.com](https://www.xiaohongshu.com)，页面右侧会出现「📕 小红书自动获客助手」浮动面板
+3. 打开 [www.xiaohongshu.com](https://www.xiaohongshu.com)，页面右侧会出现「📕 小红书AI自动获客助手」浮动面板
 
 ## 功能
 
@@ -63,7 +63,7 @@ src/
     30-main.js         启动引导
   build.js           构建脚本（组装开源模块与核心模块；核心模块不在本仓库）
 dist/
-  小红书自动获客助手-obfuscated.user.js   发布版（开源模块可读 + 核心引擎混淆）
+  小红书AI自动获客助手-obfuscated.user.js   发布版（开源模块可读 + 核心引擎混淆）
 docs/
   使用教程.md         详细使用教程
   ScriptCat安装指南.md 脚本猫（ScriptCat）安装与配置指南

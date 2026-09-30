@@ -1,5 +1,5 @@
 /*
- * 小红书自动获客助手 —— 开源模块：浮动控制面板
+ * 小红书AI自动获客助手 —— 开源模块：浮动控制面板
  * 本文件属于项目的开源部分，基于 MIT 协议发布。
  * 提供页面内设置面板：表单、校验、拖动折叠、进度展示。
  */
@@ -56,7 +56,7 @@ const panel = (() => {
   `;
 
   const HTML = `
-    <div id="xhscap-header"><span>📕 小红书自动获客助手</span><span id="xhscap-toggle">－</span></div>
+    <div id="xhscap-header"><span>📕 小红书AI自动获客助手</span><span id="xhscap-toggle">－</span></div>
     <div id="xhscap-body">
       <div id="xhscap-status"></div>
       <div class="xhscap-btns">
