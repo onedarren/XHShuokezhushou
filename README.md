@@ -67,6 +67,7 @@ dist/
 docs/
   使用教程.md         详细使用教程
   ScriptCat安装指南.md 脚本猫（ScriptCat）安装与配置指南
+  ScriptCat发布描述.md 脚本猫脚本站发布用介绍文案
   logo.png            脚本图标
 ```
 
