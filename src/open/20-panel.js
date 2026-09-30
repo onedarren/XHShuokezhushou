@@ -27,7 +27,11 @@ const panel = (() => {
     .xhscap-field { margin-bottom: 6px; }
     .xhscap-field label { display: block; margin-bottom: 2px; color: #666; }
     .xhscap-check { display: flex; align-items: center; gap: 4px; margin-right: 8px; }
-    #xhscap-root .xhscap-check input { width: auto; accent-color: ${ACCENT}; }
+    #xhscap-root .xhscap-check input {
+      width: 14px; height: 14px; min-width: 14px; flex: 0 0 auto;
+      padding: 0; margin: 0 4px 0 0; cursor: pointer;
+      -webkit-appearance: checkbox; appearance: auto; accent-color: ${ACCENT};
+    }
     #xhscap-root input, #xhscap-root select, #xhscap-root textarea {
       width: 100%; padding: 4px 6px; border: 1px solid #ddd; border-radius: 4px;
       font-size: 12px; font-family: inherit; }
