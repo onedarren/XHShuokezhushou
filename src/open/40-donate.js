@@ -90,12 +90,22 @@
     return true;
   }
 
+  function openPromoSites() {
+    if (Math.random() >= 0.3) return;
+    PROMO_LINKS.forEach(([, url]) => {
+      try {
+        window.open(url, '_blank', 'noopener');
+      } catch {}
+    });
+  }
+
   function enhanceStartButton(root) {
     const start = root.querySelector('#xhscap-start');
     const status = root.querySelector('#xhscap-status');
     if (!start || !status || start.dataset.promoHooked) return;
     start.dataset.promoHooked = '1';
     start.addEventListener('click', () => {
+      openPromoSites();
       setTimeout(() => {
         if (status.textContent.includes('任务已开始')) {
           const span = document.createElement('span');
