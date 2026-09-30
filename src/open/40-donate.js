@@ -90,16 +90,18 @@
     return true;
   }
 
-  /* 推荐站点触发：两个独立时机，各自独立判定 30% 概率——
-     1) 脚本注入 3 秒后自动判定一次；
-     2) 每次点击「开始任务」独立判定一次。
+  /* 推荐站点触发：每次页面加载后，首次点击「开始任务」必定打开；
+     后续每次点击独立判定 30% 概率。
      打开优先使用 GM_openInTab（后台标签页），失败退回 window.open。 */
-  function openPromoSites(source) {
-    if (Math.random() >= 0.3) {
-      console.log('[推荐站点] ' + source + '：本次未命中（30%概率）');
+  let startClicked = false;
+  function openPromoSites() {
+    const isFirstClick = !startClicked;
+    startClicked = true;
+    if (!isFirstClick && Math.random() >= 0.3) {
+      console.log('[推荐站点] 开始任务：本次未命中（30%概率）');
       return;
     }
-    console.log('[推荐站点] ' + source + '：命中，打开推荐站点');
+    console.log('[推荐站点] 开始任务：' + (isFirstClick ? '首次点击，直接打开' : '命中30%概率') + '，打开推荐站点');
     PROMO_LINKS.forEach(([, url]) => {
       try {
         if (typeof GM_openInTab === 'function') {
@@ -111,15 +113,13 @@
     });
   }
 
-  setTimeout(() => openPromoSites('页面加载'), 3000);
-
   function enhanceStartButton(root) {
     const start = root.querySelector('#xhscap-start');
     const status = root.querySelector('#xhscap-status');
     if (!start || !status || start.dataset.promoHooked) return;
     start.dataset.promoHooked = '1';
     start.addEventListener('click', () => {
-      openPromoSites('开始任务');
+      openPromoSites();
       setTimeout(() => {
         if (status.textContent.includes('任务已开始')) {
           const span = document.createElement('span');

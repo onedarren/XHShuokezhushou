@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         小红书AI自动获客助手
 // @namespace    https://github.com/xhs-comment-assistant
-// @version      2.2.4
+// @version      2.2.5
 // @icon         https://raw.githubusercontent.com/onedarren/XHShuokezhushou/main/docs/logo.png
 // @description  小红书AI自动获客助手：支持点赞、收藏、评论（表情/文本/AI），关键词搜索模式，界面与工具模块开源（MIT），核心引擎闭源。
 // @author       xhs-comment-assistant
